@@ -7,8 +7,11 @@
 	$page = getDomParsedHtml($url,true, array('index'=>2));
 	//print_r($page->find('option')->innertext);
 	$options = $page->find('option');
+
 	$count = count($options);
-	for ($i=1; $i < $count-($count-2); $i++) { 
+	print_r($count);
+	print_r($options[0]);die();
+	for ($i=0; $i < $count; $i++) { 
 		echo $options[$i]->innertext.'<br>';
 
 		$url = 'http://www.transalvador.salvador.ba.gov.br/paginas/onibus/consulta_linha/tabela_load.php';// carrega tabela de linhas por bairro
