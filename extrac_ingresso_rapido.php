@@ -13,7 +13,7 @@
 		if(!isset($pagination[$nextPage->href])){
 			$pagination[$nextPage->href] = $nextPage->href;
 			getPageContents($nextPage->href, $baseUrl);
-			die();
+			sleep(4);
 		}
 	}
 
@@ -47,7 +47,6 @@
 		 	}
 		 	echo '<br><br>';
 		}
-		die();
 	}
 ?>
 </pre>
