@@ -28,23 +28,20 @@
 		 	// printf("<b>url: %s </b><br>", html_entity_decode($url, ENT_NOQUOTES, 'UTF-8'));
 
 		 	$event = file_get_html2($url);
-		 	
+
 		 	//Extração de dados
 		 	$titulo = $event->find('section.content h1', 0);
-		 	$titulo = ($titulo)?iconv(mb_detect_encoding($titulo->plaintext), "UTF-8", $titulo->plaintext):'nao disponivel;';
-		 	// $titulo = ($titulo)?$titulo->plaintext:'nao disponivel;';
+		 	$titulo = ($titulo)?htmlentities($titulo->plaintext,null,"UTF-8"):'nao disponivel;';
 
 		 	$descricao = $event->find('section.content p', 0);
-		 	$descricao = ($descricao)?iconv(mb_detect_encoding($descricao->plaintext), "UTF-8", $descricao->plaintext):'nao disponivel;';
-		 	// $descricao = ($descricao)?$descricao->plaintext:'nao disponivel;';
+		 	$descricao = ($descricao)?htmlentities($descricao->plaintext,null,"UTF-8"):'nao disponivel;';
 
 		 	$endereco = $event->find('section.content p', 1);
-		 	$endereco = ($endereco)?iconv(mb_detect_encoding($endereco->plaintext), "UTF-8", $endereco->plaintext):'nao disponivel;';
+		 	$endereco = ($endereco)?htmlentities(($endereco->plaintext,null,"UTF-8"):'nao disponivel;';
 
 		 	$horario = $event->find('section.content p', 2);
-		 	$horario = ($horario)?iconv(mb_detect_encoding($horario->plaintext), "UTF-8", $horario->plaintext):'nao disponivel;';
-		 	// $horario = ($horario)?$horario->plaintext:'nao disponivel;';
-
+		 	$horario = ($horario)?htmlentities($horario->plaintext,null,"UTF-8"):'nao disponivel;';
+			
 		 	$mysql = mysqli_connect('localhost','root','','scraping_bahia_com_br');
 		 	$insertQuery = "INSERT INTO atracoes (titulo, descricao, endereco, horario) 
 		 					VALUES('".$titulo."', '".$descricao."', '".$endereco."', '".$horario."')";
